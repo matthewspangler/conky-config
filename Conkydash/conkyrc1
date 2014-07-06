@@ -1,0 +1,84 @@
+background no
+#xftfont Sans:size=10
+use_xft yes
+xftfont Bitstream Impact :size=7
+xftalpha 0.9
+update_interval 1.0
+total_run_times 0
+
+double_buffer yes
+own_window yes
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+own_window_transparent yes
+own_window_type normal
+
+border_inner_margin 0
+border_width 0
+draw_borders no
+draw_shades no
+stippled_borders 0
+
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+draw_shades yes
+draw_outline no 
+draw_borders no 
+draw_graph_borders yes
+default_color white
+default_shade_color black
+default_outline_color black 
+alignment top_right
+gap_x 15
+gap_y 15
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale no
+#double_buffer yes
+
+minimum_size 200 900
+
+TEXT
+
+${color #0087B0}${font White Rabbit:size=80}${offset 15}${time %H}${font}${color}${font White Rabbit:size=60}${voffset -48}${time :%M}${font}
+
+${font White Rabbit:size=10}${offset 70}${time %A %d %b %Y}
+
+${font Freemono:bold:size=10}${color light blue}SYSTEM ${hr 1}${color}
+$sysname $kernel $alignr $machine
+Hostname: $alignr$nodename
+Kernel: $alignr$kernel
+Uptime: $alignr$uptime
+Temp: ${alignr}${acpitemp}C
+
+CPU1: ${alignr}${cpu cpu1}%${cpugraph cpu1 15,200 000000 0077ff} 
+CPU2: ${alignr}${cpu cpu2}%${cpugraph cpu2 15,200 FFDA00 FF3C00} 
+
+Ram ${alignr}$mem / $memmax ($memperc%)
+${color light blue}${membar 4}${color}
+
+${color light blue}Highest CPU $alignr CPU% MEM%${color}
+${color light green}${top name 1}$alignr${top cpu 1}${top mem 1}${color}
+${top name 2}$alignr${top cpu 2}${top mem 2}
+${top name 3}$alignr${top cpu 3}${top mem 3}
+
+${color light blue}Highest MEM $alignr CPU% MEM%${color}
+${color light green}${top_mem name 1}$alignr${top_mem cpu 1}${top_mem mem 1}${color}
+${top_mem name 2}$alignr${top_mem cpu 2}${top_mem mem 2}
+${top_mem name 3}$alignr${top_mem cpu 3}${top_mem mem 3}
+
+${color light blue}Filesystem ${hr 1}${color}
+
+Root: ${alignr}${fs_free /} / ${fs_size /}
+${color light green}${fs_bar 4 /}${color}
+Home: ${alignr}${fs_free /home} / ${fs_size /home}
+${color light green}${fs_bar 4 /home}${color}
+
+${color light blue}Wi-Fi ${hr 1}
+${color lightgrey}Wireless signal: $color${wireless_link_qual wlan0}%
+${color lightgrey}IP address: $color${addr wlan0}
+${color lightgrey}Wifi Hostname: $color${wireless_essid wlan0}
+${if_up wlan0}
+${voffset 4}Upload speed: ${alignr}${upspeed wlan0} kb/s 
+${alignr}${upspeedgraph wlan0 15,300 000000 0077ff}
+${voffset 4}Download speed: ${alignr}${downspeed wlan0} kb/s 
+${alignr}${downspeedgraph wlan0 15,300 FFDA00 FF3C00}
+
